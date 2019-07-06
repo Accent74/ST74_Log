@@ -43,7 +43,7 @@ Class htmlog
 			
 		If assistFileName <> "" Then
 			Set dHtml = AstPrnt.Assistant
-			dHtml.HTMLDocument.location.reload(False)
+			If Not IsoPEN Then dHtml.HTMLDocument.location.reload(False)
 			dHtml.visible = True
 			dHtml.navigate assistFileName
 
