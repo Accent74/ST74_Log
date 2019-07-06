@@ -8,6 +8,31 @@
 	function agent_hlink(ID)
 		window.external.application.global.Hyperlink.Navigate "", "Main!Agent=" & ID
 	end function
+	function SaveLog()
+		Dim Dlg, wa
+		Dim fso, fl
+		
+		set wa = window.external.application.global
+		
+		set Dlg = wa.CreateLibObject("FileDialog")
+		Dlg.Caption = "Оберить файл для зберегання логу"
+		Dlg.DEfaultExt = "htm"
+		Dlg.DefaultName = "расчет_амортизации_" & wa.formatdate2(now(), "dd-mm-yyyy_hh_nn_ss")
+		
+		if dlg.ShowSave() = vbOK then
+			set fso = CreateObject("Scripting.FileSystemObject")
+			set fl = fso.createtextfile(dlg.PathName)
+			
+			if not fl is nothing then
+				fl.write "<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""><html xmlns=""http://www.w3.org/1999/xhtml"" >"
+				fl.write "<html xmlns=""http://www.w3.org/1999/xhtml"" >"
+				fl.write "<body><table>"
+				fl.write document.GetElementByID("logtable").InnerHTML
+				fl.write "</table></body>"
+				fl.close 
+			end if
+		end if
+	end function
     </SCRIPT>
     <title>Untitled Page</title>
     <style type="text/css">
@@ -104,7 +129,9 @@
 </head>
 <body>
     <div id="caption" class="stylecaption">Заголовок</div>
-    <div style="text-align: center;visibility:hidden"><input id="btnSave" type=button value="Сохранить" class="flat"/></div>
+	
+    <div style="text-align: center;visibility:hidden"><input id="btnSave" type=button value="Сохранить" class="flat" onclick="SaveLog"/></div>
+	
     <table class="style1" id="logtable" width = "100%" >
         <tr >
             <td class="styleimage"
