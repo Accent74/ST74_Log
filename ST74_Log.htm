@@ -5,9 +5,32 @@
 	function entity_hlink(ID)
 		window.external.application.global.Hyperlink.Navigate "", "Main!Entity=" & ID
 	end function
+
 	function agent_hlink(ID)
 		window.external.application.global.Hyperlink.Navigate "", "Main!Agent=" & ID
 	end function
+
+	function tml_hlink(ID)
+		window.external.application.global.Hyperlink.Navigate "", "Main!Template=" & ID
+	end function
+
+	function fld_hlink(ID)
+		window.external.application.global.Hyperlink.Navigate "", "Main!Folder=" & ID
+	end function
+
+	function acc_hlink(ID)
+		window.external.application.global.Hyperlink.Navigate "", "Main!Account=" & ID
+	end function
+
+	function bnd_hlink(ID)
+		window.external.application.global.Hyperlink.Navigate "", "Main!Binder=" & ID
+	end function
+
+	function acc_hlink(ID)
+		window.external.application.global.Hyperlink.Navigate "", "Main!Misc=" & ID
+	end function
+
+
 	function SaveLog()
 		Dim Dlg, wa
 		Dim fso, fl

@@ -128,6 +128,16 @@ Class htmlog
 						KindPref = "entity"
 					Case acAgent
 						KindPref = "agent"
+					Case acTemplate
+						KindPref = "tml"
+					Case acAccount
+						KindPref = "acc"
+					Case acFolder
+						KindPref = "fld"
+					Case acMisc
+						KindPref = "msc"
+					Case acBinder
+						KindPref = "bnd"
 				End Select
 
 				logtable.Rows(NewRow.RowIndex).Cells(NewCell.CellIndex).InnerHTML = "<a onclick='vbscript:" & KindPref & "_hlink(" & acID & ")'>" &  MsgText & "</a>"
